@@ -1,9 +1,8 @@
-require 'beaker-rspec'
+require 'beaker-rspec/spec_helper'
+require 'beaker-rspec/helpers/serverspec'
 require 'beaker/puppet_install_helper'
 
-on 'debian', 'apt-get -y install wget'
-
-run_puppet_install_helper
+run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
 
 RSpec.configure do |c|
   # Project root
@@ -14,10 +13,8 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
-    # Install module
-    # We assume the module is in auto load layout
+    # Install module and dependencies
     puppet_module_install(:source => proj_root, :module_name => 'telegraf')
-    # Install dependancies
     hosts.each do |host|
       if fact('osfamily') == 'Debian'
         on host, 'apt-get -y install apt-transport-https'

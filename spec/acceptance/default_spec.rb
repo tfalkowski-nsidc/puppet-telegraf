@@ -8,7 +8,6 @@ describe 'telegraf' do
             Exec {
               path => '/bin:/usr/bin:/sbin:/usr/sbin',
             }
-
             class { '::telegraf':
               hostname  => 'test.vagrant.dev',
               outputs   => {

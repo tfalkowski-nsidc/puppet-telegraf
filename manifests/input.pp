@@ -15,7 +15,7 @@ define telegraf::input (
   $options     = undef,
   $sections    = undef,
 ) {
-  include telegraf
+  include ::telegraf
 
   if $options {
     validate_hash($options)
@@ -28,7 +28,7 @@ define telegraf::input (
   Class['::telegraf::config']
   ->
   file {"${telegraf::config_fragment_dir}/${name}.conf":
-    content => template('telegraf/input.conf.erb')
+    content => template('telegraf/input.conf.erb'),
   }
   ~>
   Class['::telegraf::service']

@@ -30,13 +30,13 @@ class telegraf::params {
       'database' => 'telegraf',
       'username' => 'telegraf',
       'password' => 'metricsmetricsmetrics',
-    }
+    },
   }
 
   $inputs = {
     'cpu'  => {
       'percpu'   => true,
       'totalcpu' => true,
-    }
+    },
   }
 }
