@@ -2,7 +2,7 @@
 #
 # Optionally manage the Telegraf service.
 #
-lass telegraf::service {
+class telegraf::service {
 
   assert_private()
 
